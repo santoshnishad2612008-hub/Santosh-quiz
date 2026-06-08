@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Home</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2196F3;
+  padding: 15px 20px;
+  color: white;
+}
+
+nav h2 {
+  font-size: 22px;
+}
+
+nav button {
+  padding: 8px 15px;
+  border: none;
+  background: white;
+  color: #2196F3;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  padding: 12px 25px;
+  font-size: 16px;
+  background: #45e5d8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Categories */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #45e5d8;
+  color: white;
+}
+
+/* Features */
+.features {
+  padding: 40px 20px;
+  background: white;
+  text-align: center;
+}
+
+.features h2 {
+  margin-bottom: 20px;
+}
+
+.feature-box {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature {
+  width: 250px;
+  margin: 10px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #333;
+  color: white;
+}
+.link{
+  text-decoration:none;
+  color:black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <h2>Quiz App</h2>
+  
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Test Your Knowledge 🚀</h1>
+  <p>Fun quizzes in multiple categories. Learn and grow daily!</p>
+  <button><a href="quiz.html" class="link">Start Quiz</a></button>
+</section>
+
+<!-- Categories -->
+<section class="categories">
+  <div class="card"><a href="Geography.html" class="link">Geography</a></div>
+  <div class="card"><a href="Science.html"
+  class="link">Sciencce</a></div>
+  <div class="card"><a href="Gk.html" class="link">GK</a></div>
+  <div class="card"><a href="Technology.html" class="link">Technology</a></div>
+  <div class="card"><a href="History.html" class="link">History</a></div>
+  <div class="card"><a href="Economy.html" class="link">Economy</a></div>
+  <div class="card"><a href="Polity.html" class="link">Polity</a></div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <h2>Why Choose Us?</h2>
+  <div class="feature-box">
+    <div class="feature">
+      <h3>⏱ Timer Quiz</h3>
+      <p>Challenge yourself with time limits</p>
+    </div>
+    <div class="feature">
+      <h3>📊 Score Tracking</h3>
+      <p>Track your performance easily</p>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Quiz App | Made by Santosh 💻</p>
+</footer>
+
+</body>
+</html>

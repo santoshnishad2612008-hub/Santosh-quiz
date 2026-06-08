@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.app {
+  width: 95%;
+  max-width: 500px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.timer {
+  background: #2196F3;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Question */
+.question {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Options */
+.option {
+  background: #eee;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.option:hover {
+  background: #ddd;
+}
+
+.correct {
+  background: #4CAF50 !important;
+  color: white;
+}
+
+.wrong {
+  background: #f44336 !important;
+  color: white;
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Hidden */
+.hide {
+  display: none;
+}
+
+/* Result */
+.result {
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .question {
+    font-size: 18px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Start Screen -->
+  <div id="startScreen">
+    <h2>Quiz App</h2>
+    <button onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <!-- Quiz Screen -->
+  <div id="quizScreen" class="hide">
+    <header>
+      <div>Question <span id="qNo">1</span>/5</div>
+      <div class="timer" id="timer">10</div>
+    </header>
+
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+
+    <button onclick="nextQuestion()">Next</button>
+  </div>
+
+  <!-- Result Screen -->
+  <div id="resultScreen" class="hide result">
+    <h2>Your Score</h2>
+    <h1 id="score"></h1>
+    <button onclick="location.reload()">Play Again</button>
+  </div>
+
+</div>
+
+<script>
+
+const quizData = [
+  {
+    question: "JavaScript ka use kaha hota hai?",
+    options: ["Frontend", "Backend", "Both", "None"],
+    answer: 2
+  },
+  {
+    question: "HTML ka full form kya hai?",
+    options: ["Hyper Text Markup Language", "High Text Machine", "Hyper Tabular Mark", "None"],
+    answer: 0
+  },
+  {
+    question: "CSS ka use kisliye hota hai?",
+    options: ["Structure", "Design", "Database", "Server"],
+    answer: 1
+  },
+  {
+    question: "JS me variable kaise declare karte hai?",
+    options: ["var", "let", "const", "All"],
+    answer: 3
+  },
+  {
+    question: "React kya hai?",
+    options: ["Library", "Language", "Database", "OS"],
+    answer: 0
+  }
+];
+
+let index = 0;
+let score = 0;
+let timer;
+let timeLeft = 10;
+
+function startQuiz() {
+  document.getElementById("startScreen").classList.add("hide");
+  document.getElementById("quizScreen").classList.remove("hide");
+  loadQuestion();
+}
+
+function loadQuestion() {
+  resetTimer();
+  let q = quizData[index];
+  document.getElementById("question").innerText = q.question;
+  document.getElementById("qNo").innerText = index + 1;
+
+  let optionsHTML = "";
+  q.options.forEach((opt, i) => {
+    optionsHTML += `<div class="option" onclick="selectOption(${i})">${opt}</div>`;
+  });
+
+  document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function selectOption(selected) {
+  let correct = quizData[index].answer;
+  let options = document.querySelectorAll(".option");
+
+  options.forEach((opt, i) => {
+    if (i === correct) opt.classList.add("correct");
+    else if (i === selected) opt.classList.add("wrong");
+
+    opt.style.pointerEvents = "none";
+  });
+
+  if (selected === correct) score++;
+}
+
+function nextQuestion() {
+  index++;
+  if (index < quizData.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById("quizScreen").classList.add("hide");
+  document.getElementById("resultScreen").classList.remove("hide");
+  document.getElementById("score").innerText = score + " / " + quizData.length;
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  timeLeft = 10;
+  document.getElementById("timer").innerText = timeLeft;
+
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").innerText = timeLeft;
+
+    if (timeLeft === 0) {
+      nextQuestion();
+    }
+  }, 1000);
+}
+
+</script>
+
+</body>
+</html>
